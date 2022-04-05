@@ -1,0 +1,18 @@
+{% include 'navbar.html' %}
+
+{% block content %}
+<center>
+<div class="card" style="width: 30rem; margin-top:30px">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+   <hr>
+    <p class="card-text">Are you sure you want to delete this item?</p>
+    <form method="POST" action="">
+     {% csrf_token %}
+    <a href="{% url 'home' %}" class="btn btn-sm btn-info">Cancle</a>
+    <input type="submit" name="Confirm" value="Delete" class="btn btn-danger btn-sm" > </input>
+    </form>
+  </div>
+</div>
+</div>
+{% endblock content %}

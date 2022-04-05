@@ -1,0 +1,73 @@
+{% include 'navbar.html' %}
+
+{% block content %}
+
+<div class="container " style="margin-top: 50px;">
+
+  <div class="row">
+    <div class="col-md-3 ">
+    <div class="p-3 border bg-light my-3">
+      <h4><center>TOTAl Tasks</center></h4>
+       <h3><center>{{all_task}}</center></h3>
+       </div>
+       <div class="p-3 border bg-light my-3">
+      <h4><center>Completed Tasks</center></h4>
+       <h3><center>{{completed}}</center></h3>
+       </div>
+       <div class="p-3 border bg-light my-3">
+      <h4><center>Incompleted Tasks</center></h4>
+       <h3><center>{{Incompleted}}</center></h3>
+       </div>
+     
+    </div>
+    <div class="col-md-6">
+      <form method="POST" >
+    {% csrf_token %}
+    <div >
+        <div >
+          <legend>Add Task</legend>
+          <br>
+         
+          <label for="exampleInputUsername" class="form-label"> Task</label>
+          {{form.title}}
+          <br>
+            
+        <button type="submit" value="Login" class="btn btn-primary">Submit</button>
+
+        
+           
+         
+      </div>
+      </form>
+        <br>
+        <br>
+      <div class="container px-0">
+  <div class="row gx-4">
+    <div class="col">
+    
+    {% for task in tasks %}
+    
+    <div class="border bg-muted p-3 mb-3">
+        <p> <small>{{ todo.created }}</small></p>
+        <div class="row">
+            <div class="col-md-8">
+                <p><small>{{task.created}}</small> <br>{{task}}</p>
+            </div>
+            <div class="col-md-4 my-3">
+               <a class="btn btn-info btn-sm mx-1" href="{% url 'update_Task' task.id %}">Edit</a>
+                <a class="btn btn-danger btn-sm mx-1" href="{% url 'delete' task.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+     {% endfor %}
+    </div>
+    
+  </div>
+</div>
+    </div>
+    {% comment %} <div class="col-md-3">
+      3 of 3
+    </div> {% endcomment %}
+  </div>
+</div>
+{% endblock content %}
